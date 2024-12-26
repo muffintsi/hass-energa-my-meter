@@ -99,7 +99,9 @@ class EnergaDataUpdater:
                             point.get_date(tz=stats_timezone).strftime(DEBUGGING_DATE_FORMAT)
                         )
                         estimates.append(point)
-                    elif len(estimates) > 0:
+                        continue
+
+                    if len(estimates) > 0:
                         _LOGGER.debug(
                             "Found a new normal-value point. Loading %s previously skipped estimates...",
                             len(estimates)
