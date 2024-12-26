@@ -86,6 +86,8 @@ class EnergaDataUpdater:
                 for point in historical_data.historical_points:
                     point_date = point.get_date(tz=stats_timezone)
 
+                    current_day = point_date.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+
                     # If this point is already saved, let's just skip that to avoid duplicate entries
                     if (last_inserted_stat_date is not None
                             and point_date <= last_inserted_stat_date.astimezone(stats_timezone)):
@@ -110,12 +112,6 @@ class EnergaDataUpdater:
                     self._process_point_as_statistic(
                         point, point_date, historical_data.zones, previous_results, statistics
                     )
-
-                current_day = (
-                        historical_data.historical_points[0].replace(
-                            hour=0, minute=0, second=0, microsecond=0
-                        ) + timedelta(days=1)
-                )
         except EnergaClientError as error:
             _LOGGER.error("There was an error when getting the statistics: %s.", error)
 
