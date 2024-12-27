@@ -107,8 +107,9 @@ class EnergaDataUpdater:
                             len(estimates)
                         )
                         for estimate in estimates:
+                            estimate_date = estimate.get_date(tz=stats_timezone)
                             self._process_point_as_statistic(
-                                estimate, point_date, historical_data.zones, previous_results, statistics
+                                estimate, estimate_date, historical_data.zones, previous_results, statistics
                             )
 
                     self._process_point_as_statistic(
