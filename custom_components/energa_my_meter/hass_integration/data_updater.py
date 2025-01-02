@@ -111,6 +111,7 @@ class EnergaDataUpdater:
                             self._process_point_as_statistic(
                                 estimate, estimate_date, historical_data.zones, previous_results, statistics
                             )
+                        estimates = []
 
                     self._process_point_as_statistic(
                         point, point_date, historical_data.zones, previous_results, statistics
