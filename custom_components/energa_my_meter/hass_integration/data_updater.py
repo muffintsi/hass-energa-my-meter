@@ -130,9 +130,10 @@ class EnergaDataUpdater:
                 point_dt = (
                         starting_point + timedelta(days=max(MAXIMUM_DAYS_TO_BE_LOADED_AT_ONCE - 1, 1))
                 ).replace(hour=0, minute=0, second=0, microsecond=0)
-                _LOGGER.debug(
+
+                _LOGGER.info(
                     "No statistics found in the period of %s + %s days for zone '%s'. " +
-                    "Adding a simple statistic at the %point_dt, so we won't repeat...",
+                    "Adding a simple statistic at the %s, so we won't repeat...",
                     starting_point.strftime(DEBUGGING_DATE_FORMAT),
                     MAXIMUM_DAYS_TO_BE_LOADED_AT_ONCE,
                     zone,
@@ -141,7 +142,8 @@ class EnergaDataUpdater:
                 statistics[zone].append(
                     StatisticData(
                         start=point_dt,
-                        sum=previous_results.get(zone, 0), state=0
+                        sum=previous_results.get(zone, 0),
+                        state=0
                     ))
 
         return statistics
