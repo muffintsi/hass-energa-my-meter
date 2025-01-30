@@ -43,7 +43,7 @@ renovate:
     - renovate $RENOVATE_EXTRA_FLAGS
 
 lint:
-  image: python:3.12.7
+  image: python:3.13.1
   stage: test
   needs: []
   extends:
@@ -61,7 +61,7 @@ lint:
     when: always
 
 test:
-  image: python:3.12.7
+  image: python:3.13.1
   stage: test
   needs: []
   extends:
