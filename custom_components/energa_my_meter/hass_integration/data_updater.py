@@ -126,8 +126,8 @@ class EnergaDataUpdater:
             )
 
         # Only do this for the data packages that are in the past
-        if (starting_point + timedelta(days=max(MAXIMUM_DAYS_TO_BE_LOADED_AT_ONCE)) 
-            < dt_util.now().replace(hour=0, minute=0, second=0, microsecond=0)):
+        if (starting_point + timedelta(days=MAXIMUM_DAYS_TO_BE_LOADED_AT_ONCE)
+                < dt_util.now().replace(hour=0, minute=0, second=0, microsecond=0)):
             for zone in zones:
                 if len(statistics[zone]) == 0:
                     point_dt = (
